@@ -13,7 +13,7 @@ export default {
     username: 'root',
     password: 'liuziyi5211314',
     database: 'yr-uniapp',
-    entities: [__dirname + '/**/*.entity{.ts,.js}'], // 实体路径
-    synchronize: false,
+    entities: [__dirname + '/../**/*.entity{.ts,.js}'], // 实体路径
+    synchronize: true,
   },
 };

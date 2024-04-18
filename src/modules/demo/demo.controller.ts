@@ -26,14 +26,14 @@ export class DemoController {
     return 'This action returns all cats';
   }
   @Post('/mypost')
-  async create(createCatDto: CreateDemoDto) {
+  async create(@Body() createCatDto: CreateDemoDto) {
     console.log('[createCatDto]:', createCatDto);
     // 这里获取数据
     const temp = await this.usersRepository.query('SELECT * FROM demo');
     console.log('[我是数据库中的内容]：', temp);
-    // if (!createCatDto.value) {
-    //   throw new HttpException('我报错了啊啊啊', HttpStatus.BAD_REQUEST);
-    // }
+    if (!createCatDto.value) {
+      throw new HttpException('我报错了啊啊啊', HttpStatus.BAD_REQUEST);
+    }
     return '我成功了哈';
   }
 }

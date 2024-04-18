@@ -13,7 +13,7 @@ export default {
     username: 'root',
     password: 'root',
     database: 'nestjs_prod',
-    autoLoadEntities: true,
+    entities: [__dirname + '/../**/*.entity{.ts,.js}'], // 实体路径
     synchronize: true,
   },
 };
