@@ -11,10 +11,10 @@ export class Users {
   @Column({ nullable: true })
   unionid: string;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
   @Column({ nullable: true })
@@ -23,6 +23,6 @@ export class Users {
   @Column({ nullable: true })
   remake: string;
 
-  @Column()
+  @Column({ nullable: true })
   address: string;
 }

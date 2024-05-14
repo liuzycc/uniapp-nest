@@ -13,4 +13,10 @@ export class WxConfig {
 
   @Column()
   secret: string;
+
+  @Column()
+  access_token: string;
+
+  @Column()
+  access_token_time: string;
 }

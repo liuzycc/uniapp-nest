@@ -7,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { env } from './config';
 import { Demo } from './modules/demo/entities/demo.entities';
 import { UsersModule } from './modules/users/users.module';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(env.DATABASE_CONFIG),
