@@ -1,4 +1,5 @@
 export class UsersDto {
+  readonly id?: number;
   readonly openid: string;
   readonly unionid: string;
   readonly name: string;

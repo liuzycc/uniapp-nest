@@ -1,7 +1,8 @@
 export class ShopDto {
+  readonly id?: number;
   readonly userId: number;
   readonly products: string;
   readonly remark: string;
   readonly status: number;
-  readonly isDelect: number;
+  readonly isDelete: number;
 }
