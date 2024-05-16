@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { AnyExceptionFilter } from './filters/allFilter';
 import { TransformInterceptor } from './transform/allTransform';
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalFilters(new AnyExceptionFilter());
   app.useGlobalInterceptors(new TransformInterceptor());
   await app.listen(3000);
