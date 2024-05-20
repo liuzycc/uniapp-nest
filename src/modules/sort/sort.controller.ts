@@ -39,11 +39,18 @@ export class SortController {
     return res;
   }
   @Post('/remove')
-  async removeSort(@Body() info: { id: number }) {
-    if (!info.id) {
+  async removeSort(@Body() info: { idList: number[] }) {
+    if (!info.idList.length) {
       throw new HttpException('缺少必填字段id', HttpStatus.BAD_REQUEST);
     }
-    const res = await this.sortService.remove(info.id);
-    return res;
+    try {
+      for (let i = 0; i < info.idList.length; i++) {
+        const id = info.idList[i];
+        await this.sortService.remove(id);
+      }
+      return '删除成功';
+    } catch {
+      throw new HttpException('删除分类异常', HttpStatus.BAD_REQUEST);
+    }
   }
 }
