@@ -20,7 +20,7 @@ id: 主
 title: 商品名称
 showTitle: 详情页展示名称
 subTitle: 商品描述
-tags: 标签枚举 [0,1,2]
+tags: 标签 ['标签1','标签2','标签3']
 thum: 商品缩略图 'xxx'
 imgs: 详情页展示的图片套图 ['xxx','xxx','xxx']
 info: 详情页展示的详细内容,大图文本 'xxx',包括可扩展属性
