@@ -10,8 +10,37 @@ export class SortService {
     private sortRepository: Repository<Sort>,
   ) {}
   // 查询所有
-  findAll() {
-    return this.sortRepository.find({ where: { isDelete: 0 } });
+  async findAll(sortInfo?: { level: number }) {
+    try {
+      // return this.sortRepository.find({ where: { isDelete: 0 } });
+      const queryBuilder = this.sortRepository.createQueryBuilder('sort');
+      queryBuilder.andWhere('sort.isDelete = :isDelete', { isDelete: 0 });
+      if (sortInfo?.level && sortInfo.level == 1) {
+        queryBuilder.andWhere('sort.level1 != :level', {
+          level: 0,
+        });
+      }
+      if (sortInfo?.level && sortInfo.level == 2) {
+        queryBuilder.andWhere('sort.level2 != :level', {
+          level: 0,
+        });
+      }
+      const result = await queryBuilder.getRawMany();
+      const res = result.map((item) => {
+        const t: any = {};
+        for (let key in item) {
+          const v = item[key];
+          if (key.includes('sort_')) {
+            key = key.split('sort_')[1];
+          }
+          t[key] = v;
+        }
+        return t;
+      });
+      return res;
+    } catch (e) {
+      throw new HttpException(`查询失败：${e}`, HttpStatus.BAD_REQUEST);
+    }
   }
   // 创建
   async create(sortInfo: SortDto) {

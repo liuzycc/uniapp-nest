@@ -16,8 +16,45 @@ export class UsersService {
     private wxConfigRepository: Repository<WxConfig>,
   ) {}
   // 查询所有
-  findAll() {
-    return this.usersRepository.find();
+  async findAll(findUserInfo: {
+    name?: string;
+    phone?: string;
+    address?: string;
+  }) {
+    try {
+      // return this.usersRepository.find();
+      const queryBuilder = this.usersRepository.createQueryBuilder('users');
+      if (findUserInfo.name) {
+        queryBuilder.andWhere('users.name LIKE :name', {
+          name: `%${findUserInfo.name}%`,
+        });
+      }
+      if (findUserInfo.phone) {
+        queryBuilder.andWhere('users.phone LIKE :phone', {
+          phone: `%${findUserInfo.phone}%`,
+        });
+      }
+      if (findUserInfo.address) {
+        queryBuilder.andWhere('users.address LIKE :address', {
+          address: `%${findUserInfo.address}%`,
+        });
+      }
+      const result = await queryBuilder.getRawMany();
+      const res = result.map((item) => {
+        const t: any = {};
+        for (let key in item) {
+          const v = item[key];
+          if (key.includes('users_')) {
+            key = key.split('users_')[1];
+          }
+          t[key] = v;
+        }
+        return t;
+      });
+      return res;
+    } catch (e) {
+      throw new HttpException(`查询失败：${e}`, HttpStatus.BAD_REQUEST);
+    }
   }
   async findOne(openid: string) {
     try {

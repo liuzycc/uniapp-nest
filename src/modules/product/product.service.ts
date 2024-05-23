@@ -10,7 +10,13 @@ export class ProductService {
     private productRepository: Repository<Product>,
   ) {}
   // 查询所有
-  async findAll() {
+  async findAll(findInfo: {
+    id?: string;
+    title?: string;
+    sort1?: string;
+    sort2?: string;
+  }) {
+    console.log(findInfo);
     // return this.productRepository.find({ where: { isDelete: 0 } });
     try {
       const queryBuilder = this.productRepository.createQueryBuilder('product');
@@ -20,9 +26,28 @@ export class ProductService {
         .addSelect('level1Sort.title', 'sort1Name') // 选择level1Sort的title作为新字段level1Name
         .leftJoin('sort', 'level2Sort', 'product.sort2 = level2Sort.id') // 第二次左连接，别名为level2Sort
         .addSelect('level2Sort.title', 'sort2Name') // 选择level2Sort的title作为新字段level2Name
-        .where('product.isDelete = :isDelete', { isDelete: 0 }); // 添加过滤条件
-      // queryBuilder.where('product.isDelete = :isDelete', { isDelete: 0 }); // 添加过滤条件
-      // queryBuilder.where('product.title LIKE :title', { title: `%${'矿泉'}%` }); // 添加title的模糊查询
+        .andWhere('product.isDelete = :isDelete', { isDelete: 0 }); // 添加过滤条件
+      // 这里增加查询条件
+      if (findInfo.id) {
+        queryBuilder.andWhere('product.id = :id', {
+          id: findInfo.id,
+        });
+      }
+      if (findInfo.title) {
+        queryBuilder.andWhere('product.title LIKE :title', {
+          title: `%${findInfo.title}%`,
+        });
+      }
+      if (findInfo.sort1) {
+        queryBuilder.andWhere('product.sort1 = :sort1', {
+          sort1: findInfo.sort1,
+        });
+      }
+      if (findInfo.sort2) {
+        queryBuilder.andWhere('product.sort2 = :sort2', {
+          sort2: findInfo.sort2,
+        });
+      }
       const result = await queryBuilder.getRawMany();
       const res = result.map((item) => {
         const t: any = {};

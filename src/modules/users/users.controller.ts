@@ -5,6 +5,7 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { UsersService } from './users.service';
@@ -24,9 +25,8 @@ export class UsersController {
     private readonly httpService: HttpService,
   ) {}
   @Get('/list')
-  async findAll() {
-    const res = await this.userService.findAll();
-    console.log(res[0].name);
+  async findAll(@Query() findUserInfo: any) {
+    const res = await this.userService.findAll(findUserInfo);
     return res;
   }
   @Post('/create')

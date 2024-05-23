@@ -5,6 +5,7 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ProductService } from './product.service';
@@ -16,8 +17,8 @@ export class ProductController {
     private readonly httpService: HttpService,
   ) {}
   @Get('/list')
-  async findAll() {
-    const res = await this.productService.findAll();
+  async findAll(@Query() query: any) {
+    const res = await this.productService.findAll(query);
     return res;
   }
   @Post('/create')

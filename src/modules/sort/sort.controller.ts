@@ -5,6 +5,7 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { SortService } from './sort.service';
@@ -16,8 +17,9 @@ export class SortController {
     private readonly httpService: HttpService,
   ) {}
   @Get('/list')
-  async findAll() {
-    const res = await this.sortService.findAll();
+  async findAll(@Query() sortInfo: any) {
+    console.log(sortInfo);
+    const res = await this.sortService.findAll(sortInfo);
     return res;
   }
   @Post('/create')

@@ -13,6 +13,7 @@ import { ProductModule } from './modules/product/product.module';
 import { SortModule } from './modules/sort/sort.module';
 import { ShopModule } from './modules/shop/shop.module';
 import { ImageModule } from './modules/image/image.module';
+import { CarModule } from './modules/car/car.module';
 @Module({
   imports: [
     // 静态服务
@@ -27,6 +28,7 @@ import { ImageModule } from './modules/image/image.module';
     SortModule,
     ShopModule,
     ImageModule,
+    CarModule,
   ],
   controllers: [AppController, CatsController, DemoController],
   providers: [AppService],
