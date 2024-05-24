@@ -66,7 +66,7 @@ export class UsersController {
         const res = await this.userService.create(wxInfo.data.openid);
         res && (user = { openid: wxInfo.data.openid });
       }
-      return user?.openid;
+      return user;
     } else {
       throw new HttpException('获取openId失败', HttpStatus.BAD_REQUEST);
     }
