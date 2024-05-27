@@ -8,7 +8,7 @@ export class Shop {
   @Column()
   userId: number;
 
-  @Column({ nullable: true })
+  @Column('longtext', { nullable: true })
   products: string;
 
   @Column({ nullable: true })
@@ -16,6 +16,9 @@ export class Shop {
 
   @Column({ nullable: true })
   status: number;
+
+  @Column({ nullable: true })
+  date: string;
 
   @Column({ nullable: true })
   isDelete: number;

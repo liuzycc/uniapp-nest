@@ -82,8 +82,8 @@ export class UsersService {
   }
   async update(user: UsersDto) {
     try {
-      const { openid, address } = user;
-      const res = await this.usersRepository.update({ openid }, { address });
+      const { openid, ...arg } = user;
+      const res = await this.usersRepository.update({ openid }, arg);
       return res;
     } catch (e) {
       throw new HttpException(`更新失败：${e}`, HttpStatus.BAD_REQUEST);

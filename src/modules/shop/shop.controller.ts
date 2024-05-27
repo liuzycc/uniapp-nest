@@ -5,6 +5,7 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ShopService } from './shop.service';
@@ -18,6 +19,24 @@ export class ShopController {
   @Get('/list')
   async findAll() {
     const res = await this.shopService.findAll();
+    return res;
+  }
+  @Get('/findIdInfo')
+  async findIdInfo(@Query() info: any) {
+    const { id } = info;
+    if (!id) {
+      throw new HttpException('缺少必填字段id', HttpStatus.BAD_REQUEST);
+    }
+    const res = await this.shopService.findIdAll(info);
+    return res;
+  }
+  @Get('/findUserList')
+  async findUserListAll(@Query() info: any) {
+    const { userId } = info;
+    if (!userId) {
+      throw new HttpException('缺少必填字段userId', HttpStatus.BAD_REQUEST);
+    }
+    const res = await this.shopService.findUserAll(info);
     return res;
   }
   @Post('/create')

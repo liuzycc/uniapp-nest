@@ -13,6 +13,18 @@ export class ShopService {
   findAll() {
     return this.shopRepository.find({ where: { isDelete: 0 } });
   }
+  // 查询当前用户所有
+  findUserAll(info: ShopDto) {
+    return this.shopRepository.find({
+      where: { userId: info.userId },
+    });
+  }
+  // 查询通过id
+  findIdAll(info: ShopDto) {
+    return this.shopRepository.find({
+      where: { id: info.id },
+    });
+  }
   // 创建
   async create(shopInfo: ShopDto) {
     try {

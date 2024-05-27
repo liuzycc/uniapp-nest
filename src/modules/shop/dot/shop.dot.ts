@@ -5,4 +5,5 @@ export class ShopDto {
   readonly remark: string;
   readonly status: number;
   readonly isDelete: number;
+  readonly date: string;
 }
