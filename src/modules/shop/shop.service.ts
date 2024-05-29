@@ -10,8 +10,66 @@ export class ShopService {
     private shopRepository: Repository<Shop>,
   ) {}
   // 查询所有
-  findAll() {
-    return this.shopRepository.find({ where: { isDelete: 0 } });
+  async findAll(findInfo: {
+    sname?: string;
+    sphone?: string;
+    saddress?: string;
+    status?: 0 | 1 | 2;
+  }) {
+    // const shopList: any = await this.shopRepository.find({
+    //   where: { isDelete: 0 },
+    // });
+    // return shopList.map((item: any) => {
+    //   item.products && (item.products = JSON.parse(item.products));
+    //   return item;
+    // });
+
+    try {
+      const queryBuilder = this.shopRepository.createQueryBuilder('shop');
+      queryBuilder.andWhere('shop.isDelete = :isDelete', { isDelete: 0 }); // 添加过滤条件
+      if (findInfo.sname) {
+        queryBuilder.andWhere('shop.sname LIKE :sname', {
+          sname: `%${findInfo.sname}%`,
+        });
+      }
+      if (findInfo.sphone) {
+        queryBuilder.andWhere('shop.sphone LIKE :sphone', {
+          sphone: `%${findInfo.sphone}%`,
+        });
+      }
+      if (findInfo.saddress) {
+        queryBuilder.andWhere('shop.saddress LIKE :saddress', {
+          saddress: `%${findInfo.saddress}%`,
+        });
+      }
+      if (
+        findInfo.status == 0 ||
+        findInfo.status == 1 ||
+        findInfo.status == 2
+      ) {
+        queryBuilder.andWhere('shop.status = :status', {
+          status: findInfo.status,
+        });
+      }
+      const result = await queryBuilder.getRawMany();
+      const shopList = result.map((item) => {
+        const t: any = {};
+        for (let key in item) {
+          const v = item[key];
+          if (key.includes('shop_')) {
+            key = key.split('shop_')[1];
+          }
+          t[key] = v;
+        }
+        return t;
+      });
+      return shopList.map((item: any) => {
+        item.products && (item.products = JSON.parse(item.products));
+        return item;
+      });
+    } catch (e) {
+      throw new HttpException(`查询失败：${e}`, HttpStatus.BAD_REQUEST);
+    }
   }
   // 查询当前用户所有
   findUserAll(info: ShopDto) {

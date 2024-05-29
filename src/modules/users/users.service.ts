@@ -72,11 +72,8 @@ export class UsersService {
   async create(openid: string) {
     try {
       const res = await this.usersRepository.save({ openid });
-      console.log(res, 'pppp');
       return res;
     } catch (e) {
-      console.log(e, '我失败了');
-
       throw new HttpException(`创建失败：${e}`, HttpStatus.BAD_REQUEST);
     }
   }

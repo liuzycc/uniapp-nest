@@ -6,4 +6,7 @@ export class ShopDto {
   readonly status: number;
   readonly isDelete: number;
   readonly date: string;
+  readonly sname: string;
+  readonly sphone: string;
+  readonly saddress: string;
 }

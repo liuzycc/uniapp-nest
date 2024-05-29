@@ -22,4 +22,13 @@ export class Shop {
 
   @Column({ nullable: true })
   isDelete: number;
+
+  @Column({ nullable: true })
+  sname: string;
+
+  @Column({ nullable: true })
+  sphone: string;
+
+  @Column('longtext', { nullable: true })
+  saddress: string;
 }

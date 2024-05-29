@@ -17,8 +17,8 @@ export class ShopController {
     private readonly httpService: HttpService,
   ) {}
   @Get('/list')
-  async findAll() {
-    const res = await this.shopService.findAll();
+  async findAll(@Query() query: any) {
+    const res = await this.shopService.findAll(query);
     return res;
   }
   @Get('/findIdInfo')

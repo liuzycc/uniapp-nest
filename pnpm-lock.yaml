@@ -35,6 +35,9 @@ dependencies:
   mysql:
     specifier: ^2.18.1
     version: 2.18.1
+  nodemailer:
+    specifier: ^6.9.13
+    version: 6.9.13
   reflect-metadata:
     specifier: ^0.2.0
     version: 0.2.0
@@ -4145,6 +4148,11 @@ packages:
   /node-releases@2.0.14:
     resolution: {integrity: sha1-L/sFO864sr6Elezhq2zmAMRGGws=}
     dev: true
+
+  /nodemailer@6.9.13:
+    resolution: {integrity: sha1-Wykr8ekmRfSFLKhyxWprpsSj09Y=}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /normalize-path@3.0.0:
     resolution: {integrity: sha1-Dc1p/yOhybEf0JeDFmRKA4ghamU=}

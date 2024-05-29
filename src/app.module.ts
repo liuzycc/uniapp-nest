@@ -14,6 +14,8 @@ import { SortModule } from './modules/sort/sort.module';
 import { ShopModule } from './modules/shop/shop.module';
 import { ImageModule } from './modules/image/image.module';
 import { CarModule } from './modules/car/car.module';
+import { MailModule } from './modules/mail/mail.module';
+import { HomeModule } from './modules/home/home.module';
 @Module({
   imports: [
     // 静态服务
@@ -29,6 +31,8 @@ import { CarModule } from './modules/car/car.module';
     ShopModule,
     ImageModule,
     CarModule,
+    MailModule,
+    HomeModule,
   ],
   controllers: [AppController, CatsController, DemoController],
   providers: [AppService],
