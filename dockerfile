@@ -11,18 +11,18 @@ ENV NODE_ENV production
 COPY package*.json ./
 
 # 安装依赖项，包括PM2
-RUN npm install -g pnpm
+# RUN npm install -g pnpm
 # 设置 SHELL 环境变量为 sh (或者你可以使用 bash)
-ENV SHELL=/bin/sh
+# ENV SHELL=/bin/sh
 # 自动创建全局 bin 目录
-RUN pnpm setup
-RUN pnpm install -g @nestjs/cli
-RUN pnpm install -g express
-RUN pnpm install
+# RUN pnpm setup
+RUN npm install -g @nestjs/cli
+RUN npm install -g express
+RUN npm install
 # 将项目文件复制到容器内
 COPY . .
 # 构建应用程序
-RUN nest build
+RUN npm run build
 
 # 应用运行的端口
 EXPOSE 3000
