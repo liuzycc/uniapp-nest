@@ -8,11 +8,11 @@ export default {
   // 数据库配置
   DATABASE_CONFIG: {
     type: 'mysql',
-    host: 'localhost',
+    host: '82.157.175.138',
     port: 3306,
     username: 'root',
-    password: 'root',
-    database: 'nestjs_prod',
+    password: 'liuziyi5211314',
+    database: 'yr-uniapp',
     entities: [__dirname + '/../**/*.entity{.ts,.js}'], // 实体路径
     synchronize: true,
   },
