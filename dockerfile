@@ -12,6 +12,8 @@ COPY package*.json ./
 
 # 安装依赖项，包括PM2
 RUN npm install -g pnpm
+# 自动创建全局 bin 目录
+RUN pnpm setup
 RUN pnpm install -g @nestjs/cli
 RUN pnpm install -g express
 RUN pnpm install
