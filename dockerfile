@@ -11,8 +11,8 @@ ENV NODE_ENV production
 COPY package*.json ./
 
 # 安装依赖项，包括PM2
-RUN npm install
-RUN npm install -g pm2
+RUN npm install -g pnpm
+RUN pnpm install
 
 # 将项目文件复制到容器内
 COPY . .
