@@ -16,6 +16,7 @@ COPY package*.json ./
 # ENV SHELL=/bin/sh
 # 自动创建全局 bin 目录
 # RUN pnpm setup
+RUN npm install -g pm2
 RUN npm install -g @nestjs/cli
 RUN npm install -g express
 RUN npm install
