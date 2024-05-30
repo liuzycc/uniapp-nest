@@ -12,12 +12,13 @@ COPY package*.json ./
 
 # 安装依赖项，包括PM2
 RUN npm install -g pnpm
+RUN npm install -g @nestjs/cli
 RUN pnpm install
-
+RUN nest
 # 将项目文件复制到容器内
 COPY . .
 # 构建应用程序
-RUN npx nest build
+RUN nest build
 
 # 应用运行的端口
 EXPOSE 3000
