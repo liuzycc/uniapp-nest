@@ -12,9 +12,9 @@ COPY package*.json ./
 
 # 安装依赖项，包括PM2
 RUN npm install -g pnpm
-RUN npm install -g @nestjs/cli
+RUN pnpm install -g @nestjs/cli
+RUN pnpm install -g express
 RUN pnpm install
-RUN nest
 # 将项目文件复制到容器内
 COPY . .
 # 构建应用程序
