@@ -18,7 +18,7 @@ RUN nest
 # 将项目文件复制到容器内
 COPY . .
 # 构建应用程序
-RUN nest build
+RUN npx nest build
 
 # 应用运行的端口
 EXPOSE 3000
