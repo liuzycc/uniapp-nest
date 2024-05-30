@@ -18,7 +18,7 @@ RUN pnpm install
 COPY . .
 RUN ls -la
 # 构建应用程序
-RUN pnpm run build
+RUN npx pnpm run build
 
 # 应用运行的端口
 EXPOSE 3000
