@@ -16,9 +16,8 @@ RUN pnpm install
 
 # 将项目文件复制到容器内
 COPY . .
-RUN ls -la
 # 构建应用程序
-RUN npx pnpm run build
+RUN npx nest build
 
 # 应用运行的端口
 EXPOSE 3000
