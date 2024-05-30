@@ -12,6 +12,8 @@ COPY package*.json ./
 
 # 安装依赖项，包括PM2
 RUN npm install -g pnpm
+# 设置 SHELL 环境变量为 sh (或者你可以使用 bash)
+ENV SHELL=/bin/sh
 # 自动创建全局 bin 目录
 RUN pnpm setup
 RUN pnpm install -g @nestjs/cli
