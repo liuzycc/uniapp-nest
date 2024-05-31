@@ -43,11 +43,12 @@ export class UsersController {
     if (!access_token || !access_token_time || date - access_token_time > 0) {
       // 获取wx token
       const { data: wxTokenInfo }: wxTokenInfoData = (await this.httpService
-        .get(
-          `https://api.weixin.qq.com/cgi-bin/stable_token?grant_type=${grant_type}&appid=${appid}&secret=${secret}`,
-        )
+        .post(`https://api.weixin.qq.com/cgi-bin/stable_token`, {
+          grant_type,
+          appid,
+          secret,
+        })
         .toPromise()) as wxTokenInfoData;
-      console.log(wxTokenInfo);
       await this.userService.upDateAccessToken({
         access_token: wxTokenInfo.access_token,
         access_token_time:
