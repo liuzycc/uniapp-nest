@@ -39,6 +39,9 @@ export class Product {
   count: number;
 
   @Column({ nullable: true })
+  price: number;
+
+  @Column({ nullable: true })
   sellNum: number;
 
   @Column({ nullable: true })
