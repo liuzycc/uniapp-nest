@@ -20,6 +20,7 @@ export class UsersService {
     name?: string;
     phone?: string;
     address?: string;
+    openId?: string;
   }) {
     try {
       // return this.usersRepository.find();
@@ -37,6 +38,11 @@ export class UsersService {
       if (findUserInfo.address) {
         queryBuilder.andWhere('users.address LIKE :address', {
           address: `%${findUserInfo.address}%`,
+        });
+      }
+      if (findUserInfo.openId) {
+        queryBuilder.andWhere('users.openid = :openid', {
+          openid: findUserInfo.openId,
         });
       }
       const result = await queryBuilder.getRawMany();
