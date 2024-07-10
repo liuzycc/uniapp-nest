@@ -38,7 +38,7 @@ export class Product {
   @Column({ nullable: true })
   count: number;
 
-  @Column({ nullable: true })
+  @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 
   @Column({ nullable: true })
