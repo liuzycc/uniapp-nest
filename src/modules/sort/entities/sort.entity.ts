@@ -15,5 +15,8 @@ export class Sort {
   level2: number;
 
   @Column({ nullable: true })
+  sort: number;
+
+  @Column({ nullable: true })
   isDelete: number;
 }

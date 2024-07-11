@@ -10,8 +10,10 @@ export class ProductDto {
   readonly config: string;
   readonly sort1: number;
   readonly sort2: number;
+  readonly psort: number;
   readonly price: number;
   readonly count: number;
+  readonly tip: string;
   readonly sellNum: number;
   readonly isDelete: number;
 }

@@ -36,10 +36,16 @@ export class Product {
   sort2: number;
 
   @Column({ nullable: true })
+  psort: number;
+
+  @Column({ nullable: true })
   count: number;
 
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
+
+  @Column({ nullable: true })
+  tip: string;
 
   @Column({ nullable: true })
   sellNum: number;
