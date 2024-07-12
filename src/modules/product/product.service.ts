@@ -26,6 +26,7 @@ export class ProductService {
         .addSelect('level1Sort.title', 'sort1Name') // 选择level1Sort的title作为新字段level1Name
         .leftJoin('sort', 'level2Sort', 'product.sort2 = level2Sort.id') // 第二次左连接，别名为level2Sort
         .addSelect('level2Sort.title', 'sort2Name') // 选择level2Sort的title作为新字段level2Name
+        .addSelect('level2Sort.sort', 'sort2sort') // 选择level2Sort的title作为新字段level2Name
         .andWhere('product.isDelete = :isDelete', { isDelete: 0 }); // 添加过滤条件
       // 这里增加查询条件
       if (findInfo.id) {
