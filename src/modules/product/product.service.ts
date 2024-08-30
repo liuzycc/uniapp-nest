@@ -15,6 +15,9 @@ export class ProductService {
     title?: string;
     sort1?: string;
     sort2?: string;
+    isHomeSwiper?: string;
+    isHomeCheap?: string;
+    isHomeNewProduct?: string;
   }) {
     console.log(findInfo);
     // return this.productRepository.find({ where: { isDelete: 0 } });
@@ -47,6 +50,24 @@ export class ProductService {
       if (findInfo.sort2) {
         queryBuilder.andWhere('product.sort2 = :sort2', {
           sort2: findInfo.sort2,
+        });
+      }
+      // 首页轮播
+      if (findInfo.isHomeSwiper) {
+        queryBuilder.andWhere('product.isHomeSwiper = :isHomeSwiper', {
+          isHomeSwiper: findInfo.isHomeSwiper,
+        });
+      }
+      // 现货特价
+      if (findInfo.isHomeCheap) {
+        queryBuilder.andWhere('product.isHomeCheap = :isHomeCheap', {
+          isHomeCheap: findInfo.isHomeCheap,
+        });
+      }
+      // 新品专区
+      if (findInfo.isHomeNewProduct) {
+        queryBuilder.andWhere('product.isHomeNewProduct = :isHomeNewProduct', {
+          isHomeNewProduct: findInfo.isHomeNewProduct,
         });
       }
       const result = await queryBuilder.getRawMany();

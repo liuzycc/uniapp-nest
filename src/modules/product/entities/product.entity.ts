@@ -50,6 +50,27 @@ export class Product {
   @Column({ nullable: true })
   sellNum: number;
 
+  // 首页轮播
+  @Column({ nullable: true })
+  isHomeSwiper: number;
+
+  @Column({ nullable: true })
+  homeSwiperNum: number;
+
+  // 今日特价
+  @Column({ nullable: true })
+  isHomeCheap: number;
+
+  @Column({ nullable: true })
+  homeCheapNum: number;
+
+  // 新品专区
+  @Column({ nullable: true })
+  isHomeNewProduct: number;
+
+  @Column({ nullable: true })
+  homeNewProductNum: number;
+
   @Column({ nullable: true })
   isDelete: number;
 }
